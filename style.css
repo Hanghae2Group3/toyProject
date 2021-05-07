@@ -1,0 +1,72 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+/* list button 관련부분 나중엔 필요없음 */
+ul{
+    position: fixed;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    margin: 0;
+    padding: 0;
+    z-index: 1;
+}
+
+ul li{
+    list-style: none;
+}
+
+/* 본격적인 바디부분 */
+#container
+{
+    position:absolute;
+
+
+}
+
+.items
+{
+    display: inline-block;
+    position: relative;
+    transition: width 0.3s ease-in-out;
+    -webkit-transition: width 0.3s ease-in-out;
+
+    width: 60px;
+    height: 200px;
+    margin-left: -3px;
+}
+
+.items:hover
+{
+    width: 200px;
+    
+    
+}
+
+#container div#home
+{
+    background:red
+}
+
+#container div#portfolio
+{
+    background: green;
+}
+
+#container div#contact
+{
+    background: blue;
+}
+
+#container div#item4
+{
+    background: yellow;
+}
+
+#container div#item5
+{
+    background: magenta;
+}
