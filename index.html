@@ -1,3 +1,4 @@
+<!-- refer to : http://sonayong.com/ -->
 <!DOCTYPE html>
 <html>
     <head lang="korean">
@@ -94,46 +95,64 @@
         <!--javaScript-->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script>
-            //click menu; css transition
+            //menu css transition
             $(document).ready(
                 function(){
                     $('.menuItem3').click(function(){
                         if ($(".pageItem2").hasClass("pageActive") == true) {
                             $(".pageItem0, .pageItem1, .pageItem2").removeClass('pageActive');
                             $(".menuItem0, .menuItem1, .menuItem2").removeClass('menuActive');
+                            $(".menuItem3").removeClass('italic');
                         } else{
                             $(".pageItem0, .pageItem1, .pageItem2").addClass('pageActive');
                             $(".menuItem0, .menuItem1, .menuItem2").addClass('menuActive');
+                            $(".menuItem3").addClass('italic');
+                            $(".menuItem0, .menuItem1, .menuItem2").removeClass('italic');
                         }                        
                     });
 
                     $('.menuItem2').click(function(){
-                        if ($(".pageItem1").hasClass("pageActive") == true) {
-                            $(".pageItem0, .pageItem1, .pageItem2").removeClass('pageActive');
-                            $(".menuItem0, .menuItem1, .menuItem2").removeClass('menuActive');
+                        if ($(".pageItem1").hasClass("pageActive") == true && $(".pageItem2").hasClass("pageActive") == false) {
+                            $(".pageItem0, .pageItem1").removeClass('pageActive');
+                            $(".menuItem0, .menuItem1").removeClass('menuActive');
+                            $(".menuItem2").removeClass('italic');
                         } else{
                             $(".pageItem0, .pageItem1").addClass('pageActive');
                             $(".menuItem0, .menuItem1").addClass('menuActive');
-                        }   
+                            $(".pageItem2").removeClass('pageActive');
+                            $(".menuItem2").removeClass('menuActive');
+                            $(".menuItem2").addClass('italic');
+                            $(".menuItem0, .menuItem1, .menuItem3").removeClass('italic');
+                        }
                     });
 
                     $('.menuItem1').click(function(){
-                        if ($(".pageItem0").hasClass("pageActive") == true) {
-                            $(".pageItem0, .pageItem1, .pageItem2").removeClass('pageActive');
-                            $(".menuItem0, .menuItem1, .menuItem2").removeClass('menuActive');
+                        if ($(".pageItem0").hasClass("pageActive") == true && $(".pageItem1").hasClass("pageActive") == false) {
+                            $(".pageItem0, .pageItem1").removeClass('pageActive');
+                            $(".menuItem0, .menuItem1").removeClass('menuActive');
+                            $(".menuItem1").removeClass('italic');
                         } else{
                             $(".pageItem0").addClass('pageActive');
                             $(".menuItem0").addClass('menuActive');
+                            $(".pageItem1, .pageItem2").removeClass('pageActive');
+                            $(".menuItem1, .menuItem2").removeClass('menuActive');
+                            $(".menuItem1").addClass('italic');
+                            $(".menuItem0, .menuItem2, .menuItem3").removeClass('italic');
                         }   
                     });
 
                     $('.menuItem0').click(function(){
                         $(".pageItem0, .pageItem1, .pageItem2").removeClass('pageActive');
                         $(".menuItem0, .menuItem1, .menuItem2").removeClass('menuActive');
+                        $(".menuItem0").addClass('italic');
+                        $(".menuItem1, .menuItem2, .menuItem3").removeClass('italic');
                     }); 
                           
                 }
             );
+            //menu link
+            
+        
         </script>
     </body>
 </html>
