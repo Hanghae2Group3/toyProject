@@ -1,72 +1,87 @@
+:root {
+	--activePageWidth: 83.5%;
+	--titleWidth: calc(1-(var(--activePageWidth))/4);
+	--mainColor: #f5f5f5;
+	--subColor: #bdbdbd;
+	--darkColor: #8d8d8d;
+
+}
+
 body {
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
+	padding: 0;
+	margin: 0;
+	max-width: 100%;
+	overflow-x: hidden;
+	position: relative;
+	display: flex;    
+	align-items: stretch;
+	justify-content: center;
 }
 
-/* list button 관련부분 나중엔 필요없음 */
-ul{
-    position: fixed;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-    margin: 0;
-    padding: 0;
-    z-index: 1;
+.titles {
+	margin: 0;
+	border: 0.1rem dotted;
+	background-color: var(--mainColor);
+	display: flex;
+	height: 100vh;
 }
 
-ul li{
-    list-style: none;
+.active {
+	
 }
 
-/* 본격적인 바디부분 */
-#container
-{
-    position:absolute;
+.inactive {
+	display:none;
+}
 
+/* 페이지 영역 */
+.page {
+	background-color: #d6d6d6;
+	padding: 2.5%;
+}
+
+.pagetext1, .pagetext2 {
+	background-color: var(--subColor);
+	padding: 1.5%;
+}
+
+/* 타이틀 영역 */
+.pageTitleDiv {
+	padding: 0;
+	margin: 0;
+}
+.pagetitle {
+	background-color: var(--darkColor);
+    transition: width 0.5s ease-in-out;
+    -webkit-transition: width 0.5s ease-in-out;
+	
+	height: 100%;
+	width: 5vw;
+}
+
+.pagetitle:hover {
+	/* 1. 타이틀 길이 좌측으로 살짝증가 시키기
+	2. 그만큼 페이지 영역 축소시키기 ease in out
+	3. 마우스 모양변경 */
+	cursor: grab;
+	width: 10vw;
+	
+}
+
+.pagetitle1 {
 
 }
 
-.items
-{
-    display: inline-block;
-    position: relative;
-    transition: width 0.3s ease-in-out;
-    -webkit-transition: width 0.3s ease-in-out;
+.pagetitle2 {
 
-    width: 60px;
-    height: 200px;
-    margin-left: -3px;
 }
 
-.items:hover
-{
-    width: 200px;
-    
-    
+.pagetitle3 {
+
+}
+.pagetitle4 {
+
 }
 
-#container div#home
-{
-    background:red
-}
 
-#container div#portfolio
-{
-    background: green;
-}
-
-#container div#contact
-{
-    background: blue;
-}
-
-#container div#item4
-{
-    background: yellow;
-}
-
-#container div#item5
-{
-    background: magenta;
-}
+/* 크기변경 */
