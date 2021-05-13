@@ -8,34 +8,62 @@
     <title>Document</title>
 </head>
 <body>
-    <ul>
-        <li><a href="#home">home</a></li>
-        <li><a href="#portfolio">protfolio</a></li>
-        <li><a href="#contact">contact</a></li>
-        <li><a href="#item4">item4</a></li>
-        <li><a href="#item5">item5</a></li>
-    </ul>
-    <div id="container">
-        <div id="home" class="items">
-            <h2>Home</h2>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Error debitis ratione molestiae similique </p>
+    <!-- titles -->
+	<div class="titles title1 ">
+		<!-- 타이틀 div -->
+		<div class="page page1 active">
+			부모 div
+			<div class="pagetext1">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptate provident, molestiae harum amet similique a error repudiandae ipsam voluptatibus assumenda ab ex excepturi reiciendis cumque iusto dolor dignissimos. Soluta, quas.
+            Praesentium atque, quod vitae ipsum enim, blanditiis deleniti libero voluptate dolores omnis fuga aliquid eligendi temporibus quidem. Distinctio aut harum facilis placeat repellat doloremque, nam sunt! Commodi quidem at sit.
+            Perferendis ipsum sequi earum nostrum, iusto, tenetur libero dignissimos aliquam facilis itaque accusantium obcaecati officia deleniti, veritatis tempora. Natus accusantium ratione eius consectetur magni doloremque accusamus nam, eligendi ducimus non.
+            Non rem voluptates iure consequatur tempore necessitatibus tempora at doloremque similique porro minus adipisci, laborum, mollitia corrupti autem suscipit inventore saepe tenetur, eaque veniam quia ipsa cum. Vero, minima officiis.
+        
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi perspiciatis voluptatibus laudantium ipsam amet nisi voluptates, minus maiores laboriosam nostrum, illo numquam animi hic quidem soluta sit perferendis! Consequatur, ad.</div>
+			<div class="pagetext2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam explicabo repellat accusantium, quod reprehenderit, voluptatibus obcaecati numquam rem excepturi, blanditiis sapiente aspernatur! Expedita possimus tempora iusto voluptates beatae ullam similique.</div>
+		</div>
+		<div class="pageTitleDiv">
+            <p class="pagetitle pagetitle1">페이지1</p>
         </div>
-        <div id="portfolio" class="items">
-            <h2>Portfolio</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi iure non eius distinctio cupiditate </p>
-            </div>
-        <div id="contact" class="items">
-            <h2>Contact</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi iure non eius distinctio cupiditate </p>
+	</div>
+<!-- page 2 -->
+	<div class="titles title2">
+		<!-- 타이틀 div -->
+		<div class="page page2 inactive">
+			<div class="pagetext1">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minus corporis sequi esse repellat reiciendis cupiditate aut? Hic nemo dolorem labore nam inventore architecto illum odio voluptas? Rerum commodi nesciunt delectus?</div>
+			<div class="pagetext2">Lorem ipsum dolor sit amet consectetur adipisicing elit. At rerum omnis inventore reiciendis nostrum nam sit mollitia voluptates in nobis. Modi exercitationem, tenetur ab iure autem consequuntur ducimus molestiae ad.</div>
+		</div>
+		<div class="pageTitleDiv">
+            <p class="pagetitle pagetitle2">페이지2</p></div>
+	</div>
+<!-- page 3 -->
+	<div class="titles title3 ">
+		<!-- 타이틀 div -->
+		<div class="page page3 inactive">
+			<div class="pagetext1">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto necessitatibus ipsam qui praesentium unde repudiandae maiores aut hic, molestiae explicabo eius corporis sequi inventore eveniet sapiente sint ratione, nihil consequatur.</div>
+			<div class="pagetext2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque illum molestias mollitia fuga saepe, est magni. Fugiat fugit harum delectus ipsa, eveniet obcaecati, veritatis rem tempora molestiae sapiente nostrum impedit?</div>
+		</div>
+		<div class="pageTitleDiv">
+            <p class="pagetitle pagetitle3">페이지3</p></div>
+	</div>
+<!-- page 4 -->
+
+	<div class="titles title4">
+		<!-- 타이틀 div -->
+		<div class="page page4 inactive">
+			<div class="pagetext1">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae magnam eligendi aut sapiente et repellendus voluptatum, nesciunt similique, dignissimos, voluptatem facere impedit! Aspernatur, pariatur maxime mollitia sed ratione asperiores molestiae.</div>
+			<div class="pagetext2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi eligendi unde, excepturi similique quas sapiente numquam optio error voluptate quos magni incidunt? Numquam porro iure aliquam in, reprehenderit consequatur tempora.</div>
+		</div>
+		<div class="pageTitleDiv">
+            <p class="pagetitle pagetitle4">페이지4</p>
         </div>
-        <div id="item4" class="items">
-            <h2>4</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, totam maiores possimus ducimus, culpa </p>
-        </div>
-        <div id="item5" class="items">
-            <h2>5</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, totam maiores possimus ducimus, culpa </p>
-        </div>
-    </div>
+	</div>
+<!-- scripts -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<!-- p 내부에 a 태그로 변경해주면 될듯?? 조금 더 공부하기 -->
+<!-- pagetitle1, actvie인데 누를경우 pagetitle2 펼쳐주기 -->
+<!-- pageTitle을 눌렀을 때 만약 active이고 현 페이지가 pagetitle1이 아닐경우 접어서 pagetitle 1 을 active 시키기-->
+<!-- 누른 pagetitle이 inactive일 경우 actvie시키고 기존 active는 inactive 시키기 -->
+<!--접히는 트랜지션 설정하기 -->
+
 </body>
 </html>
