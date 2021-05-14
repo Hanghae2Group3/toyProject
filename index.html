@@ -66,81 +66,94 @@
 	function statusCheck1() {
 		let status = $('#page1').hasClass('active');
 		if (status == true) {
-			$('#page1').removeClass('active');
-			$('#page1').addClass('inactive');
-
-			$('#page2').removeClass('inactive');
-			$('#page2').addClass('active');
-		}
+			deactivatePg1()
+			activatePg2()
+			}
 		else {
-			$('#page1').removeClass('inactive');
-			$('#page1').addClass('active');
-
-			$('#page2, #page3, #page4').removeClass('active');
-			$('#page2, #page3, #page4').removeClass('inactive');
-			$('#page2, #page3, #page4').addClass('inactive');
+			activatePg1()
+			deactivatePg2()
+			deactivatePg3()
+			deactivatePg4()
 		}
 	}
 
 	function statusCheck2() {
 		let status = $('#page2').hasClass('active');
 		if (status == true) {
-			$('#page2').removeClass('active');
-			$('#page2').addClass('inactive');
-			$('#page1').removeClass('inactive');
-			$('#page1').addClass('active');
+			deactivatePg2()
+			activatePg1()
 		}
 		else {
-			$('#page2').removeClass('inactive');
-			$('#page2').addClass('active');
-			$('#page1, #page3, #page4').removeClass('active');
-			$('#page1, #page3, #page4').removeClass('inactive');
-			$('#page1, #page3, #page4').addClass('inactive');
+			activatePg2()
+			deactivatePg1()
+			deactivatePg3()
+			deactivatePg4()
 		}
 	}
 
 
 	function statusCheck3() {
 		let status = $('#page3').hasClass('active');
-			if (status == true) {
-			$('#page3').removeClass('active');
-			$('#page3').addClass('inactive');
-			$('#page1').removeClass('inactive');
-			$('#page1').addClass('active');
+		if (status == true) {
+			deactivatePg3()
+			activatePg1()
 		}
 		else {
-			$('#page3').removeClass('inactive');
-			$('#page3').addClass('active');
-
-			$('#page1, #page2, #page4').removeClass('active');
-			$('#page1, #page2, #page4').removeClass('inactive');
-			$('#page1, #page2, #page4').addClass('inactive');
+			activatePg3()
+			deactivatePg1()
+			deactivatePg2()
+			deactivatePg4()
 		}
 	}
 
 	function statusCheck4() {
 		let status = $('#page4').hasClass('active');
-			if (status == true) {
-			$('#page4').removeClass('active');
-			$('#page4').addClass('inactive');
-			$('#page1').removeClass('inactive');
-			$('#page1').addClass('active');
+		if (status == true) {
+			deactivatePg4()
+			activatePg1()
 		}
 		else {
-			$('#page4').removeClass('inactive');
-			$('#page4').addClass('active');
-			$('#page1, #page2, #page3').removeClass('active');
-			$('#page1, #page2, #page3').removeClass('inactive');
-			$('#page1, #page2, #page3').addClass('inactive');
+			activatePg4()
+			deactivatePg1()
+			deactivatePg2()
+			deactivatePg3()
 		}
 	}
 
-</script>
+	function activatePg1() {
+		$('#page1').removeClass('inactive');
+		$('#page1').addClass('active');
+	}
+	function activatePg2() {
+		$('#page2').removeClass('inactive');
+		$('#page2').addClass('active');
+	}
+	function activatePg3() {
+		$('#page3').removeClass('inactive');
+		$('#page3').addClass('active');
+	}
+	function activatePg4() {
+		$('#page4').removeClass('inactive');
+		$('#page4').addClass('active');
+	}
 
-<!-- p 내부에 a 태그로 변경해주면 될듯?? 조금 더 공부하기 -->
-<!-- pagetitle1, actvie인데 누를경우 pagetitle2 펼쳐주기 -->
-<!-- pageTitle을 눌렀을 때 만약 active이고 현 페이지가 pagetitle1이 아닐경우 접어서 pagetitle 1 을 active 시키기-->
-<!-- 누른 pagetitle이 inactive일 경우 actvie시키고 기존 active는 inactive 시키기 -->
+	function deactivatePg1() {
+		$('#page1').removeClass('active');
+		$('#page1').addClass('inactive');
+	}
+	function deactivatePg2() {
+		$('#page2').removeClass('active');
+		$('#page2').addClass('inactive');
+	}
+	function deactivatePg3() {
+		$('#page3').removeClass('active');
+		$('#page3').addClass('inactive');
+	}
+	function deactivatePg4() {
+		$('#page4').removeClass('active');
+		$('#page4').addClass('inactive');
+	}
+</script>
 <!--접히는 트랜지션 설정하기 -->
 
 
