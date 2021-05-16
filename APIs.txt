@@ -1,0 +1,2 @@
+cliID = 'UGNq9ui5q3eO__Uum_AA'
+cliSEC = 'xDhY4nbmQb'
