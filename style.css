@@ -25,14 +25,15 @@ body {
 	border-right: 0.2rem solid #737373;
 	background-color: var(--mainColor);
 	display: flex;
-	
 	height: 100vh;
 }
 
 
 /* 페이지 영역 */
+/* 컨텐츠 내용이 없을 때 한없이 작아지는것 수정 필요 */
 div.active {
-	width: calc(var(--activePgWidth) + 5vw);
+	min-width: 70vw;
+	width: calc(var(--activePgWidth) auto);
 }
 
 div.inactive {
@@ -42,11 +43,26 @@ div.inactive {
 .page {
 	background-color: #d6d6d6;
 	padding: 2.5%;
+	overflow: auto;
+}
+/* 일단 안되는거 같아보임
+.page::-webkit-scrollbar, .pagetext1::-webkit-scrollbar {
+	width: 10px;
+	background-color: rgb(86, 86, 223);
+
+}
+.page::-webkit-scrollbar-thumb, .pagetext1::-webkit-scrollbar-thumb{
+	background-color: rgb(86, 86, 223);
 }
 
+.page::-webkit-scrollbar-track {
+	background-color: rgb(54, 54, 212);
+}
+ */
 .pagetext1, .pagetext2 {
 	background-color: var(--subColor);
 	padding: 1.5%;
+	height: 97%;
 }
 
 /* 타이틀 영역 */
@@ -89,6 +105,11 @@ p a:link {
 	text-decoration: none;
 }
 
-
-
 /* 크기변경 */
+
+/* 로그인 */
+/* 검색 */
+.searchDiv {
+	display: flex;
+	
+}
