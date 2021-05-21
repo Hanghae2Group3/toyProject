@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- import bootstrap css -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+	<!-- import bootstrap js -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+	<!-- style -->
+	<style>
+		/* Colors: http://getuicolors.com */
+		/* refer to https://github.com/LukePeters/user-login-system-assets/blob/master/styles.css */
+		/* Setup */
+		:root {
+			--black: #000000;
+			--almost-black: #263238;
+			--white: #ffffff;
+			--almost-white: #FBFBFB;
+			--grey-light: #CFD8DC;
+			--grey: #B0BEC5;
+			--grey-medium: #78909C;
+			--grey-dark: #455A64;
+			--primary: #1E88E5;
+			--primary-dark: #1976D2;
+			--secondary: #CFD8DC;
+			--secondary-dark: #B0BEC5;
+			--red: #EF4836;
+		}
+
+		* {
+			position: relative;
+			box-sizing: border-box;
+		}
+
+		body {
+			margin: 0;
+			font-family: sans-serif;
+			font-size: 1.2em;
+			line-height: 1.2;
+			color: var(--black);
+			background: var(--grey-light);
+		}
+
+		/* Typography */
+		.center {
+			text-align: center;
+		}
+
+		h1 {
+			margin: 0.5em 0 1em;
+			font-size: 1.5em;
+			line-height: 1.2;
+			color: var(--grey-dark);
+		}
+
+		.center {
+			text-align: center;
+		}
+
+		p {
+			margin: 24px 0;
+		}
+
+		/* Cards */
+		.card-wrapper {
+			margin: 0 auto;
+			padding: 90px 30px;
+			flex-wrap: wrap;
+			justify-content: center;
+			display: flex;
+		}
+
+		.card {
+			margin: 0 30px 60px;
+			padding: 20px 40px;
+			width: 460px;
+			box-shadow: 0 8px 26px -4px rgba(0,0,0,0.15);
+			border-radius: 5px;
+			background: var(--white);
+		}
+
+		@media only screen and (max-width: 520px) {
+			.card-wrapper {
+				padding: 30px 0 0;
+			}
+		}
+
+		@media only screen and (max-width: 520px) {
+			.card {
+				margin: 0 0 30px;
+				width: 100%;
+				border-radius: 0;
+			}
+		}
+
+		/* Forms */
+		form {
+			transition: opacity .15s ease;
+		}
+
+		form.loading {
+			pointer-events: none;
+			opacity: 0.75;
+		}
+
+		label {
+			margin: 0 0 2px;
+			font-size: .7em;
+			line-height: 1.5;
+			letter-spacing: 1px;
+			color: var(--grey-medium);
+			display: block;
+		}
+
+		.form-control::-webkit-input-placeholder { /* Edge */
+			color: var(--grey);
+			font-size: 14px;
+		}
+
+		.form-control:-ms-input-placeholder { /* Internet Explorer 10-11 */
+			color: var(--grey);
+			font-size: 14px;
+		}
+
+		.form-control::placeholder {
+			color: var(--grey);
+			font-size: 14px;
+		}
+
+		/* buttons margin and padding */
+		.btn {
+  		margin: 10px 0 20px;
+		}
+
+		/* error */
+
+		.error {
+			margin: 10px 0 0;
+			font-size: 0.8em;
+			line-height: 1.5;
+			text-align: left;
+			color: var(--red);
+		}
+
+		.error--hidden {
+			display: none;
+		}
+
+	</style>	
+	
+	<title>User Login System</title>
+</head>
+<body>
+	
+	{% block content %}
+		{# Template inserted here #}
+	{% endblock%}
+
+	<script language="JavaScript" type="text/javascript" src="/static/js/jquery-3.6.0.min.js"></script>
+	<script language="JavaScript" type="text/javascript" src="/static/js/scripts.js"></script>
+</body>
+</html>
