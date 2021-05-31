@@ -15,8 +15,11 @@ def boardHome():
 # 게시판 글 목록
 @bp.route('/list/')
 def articleList():
+  # ariticleList = boardDbInfo().callList()
 	articleList = boardDbInfo().boardDbCol.find({}).sort('createTime', -1)
-	return render_template('boardList.html', articleList = articleList)
+	# page = request.args.get('page', type=int, default=1)
+	# articleList = articleList.paginate(page, per_page=10)
+	return render_template('article_list.html', articleList=articleList)
 
 # 게시판 글 상세
 @bp.route('/detail/<path:articleId>/')
@@ -48,18 +51,20 @@ def deleteArticle(articleId):
 	boardDbInfo().boardDbCol.delete_one(article)
 	return redirect(url_for('board.articleList'))
 
-#글 수정
-@bp.route('/edit/<path:articleId>/', methods=['GET', 'POST'])
-def editArticle(articleId):
-	article = boardDbInfo().boardDbCol.find_one({'_id': articleId })
-	# if request.method == 'POST':
-	# 	form = createArticleForm()
-	# 	if form.validate_on_submit():
-	# 		form.populate_obj(article)
-	# 		boardDbInfo().boardDbCol.update_one(article)
-	# 		return redirect(url_for('board.detail', articleId = articleId))
+# #글 수정
+# @bp.route('/edit/<path:articleId>/', methods=['GET', 'POST'])
+# def editArticle(articleId):
+# 	article = boardDbInfo().boardDbCol.find_one({'_id': articleId })
+
+# 	# if request.method == 'POST':
+# 	# 	form = createArticleForm()
+# 	# 	if form.validate_on_submit():
+# 	# 		form.populate_obj(article)
+# 	# 		boardDbInfo().boardDbCol.update_one({'_id': articleId })
+# 	# 		return redirect(url_for('board.detail', articleId = articleId))
+# 	# else:
+# 	form = createArticleForm(obj=article)
 	
-	# else:
-	form = createArticleForm(obj = article)	
-	return render_template('article_form.html', form = form)
-		
+# 	return render_template('article_form.html', form=form)
+	
+

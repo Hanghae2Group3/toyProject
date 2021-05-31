@@ -1,0 +1,57 @@
+<header class="nav-bar">
+  <div>
+    <h1 class="tab-menu-item">
+      <a href="/" class="logo">Hanghae99 Team 3 Mini Project</a>
+    </h1>
+  </div>
+  <div class="tab-menu">
+    <a href="{{ url_for('userAuth.dashboard') }}" class="tab-menu-item">Dashboard</a>
+    <a href="{{ url_for('userAuth.login') }}" class="tab-menu-item">Login</a>
+    <a href="{{ url_for('userAuth.signup') }}" class="tab-menu-item">Signup</a>
+    <a href="{{ url_for('board.boardHome') }}" class="tab-menu-item">Board</a>
+  </div>
+</header>
+
+<!--
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{{ url_for('board.boardHome') }}"
+      >항해99 3조 토이프로젝트</a
+    >
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('userAuth.dashboard') }}"
+            >대시보드</a
+          >
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('userAuth.signup') }}"
+            >회원가입</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('userAuth.login') }}">로그인</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('board.articleList') }}"
+            >게시판</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+-->
