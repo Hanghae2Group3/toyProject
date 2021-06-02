@@ -16,7 +16,7 @@ class userSignupForm(FlaskForm):
 		'비밀번호', validators=[DataRequired('비밀번호를 입력하세요.')])
 	userPasswordConfirm = PasswordField('비밀번호 확인', 
 		validators=[DataRequired('비밀번호를 한 번 더 입력하세요.'), EqualTo('userPassword', '비밀번호가 일치하지 않습니다.')])
-	privacyPolicy = BooleanField('개인정보 처리 방침', [validators.required('필수 동의 항목에 동의해 주세요.')])
+	privacyPolicy = BooleanField('개인정보 처리 방침', [validators.required('개인정보 처리 방침에 동의해 주세요.')])
 	termsOfService = BooleanField('서비스 이용 약관', [validators.required('서비스 이용 약관에 동의해 주세요.')])
 	allowPromotions = BooleanField('프로모션 수신', [validators.optional()])
 
