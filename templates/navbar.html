@@ -1,0 +1,33 @@
+{% extends "base.html" %} 
+
+{% block navbar %}
+	<!-- 내비바 -->
+		<header class="nav-bar">
+			<div>
+				<h1 class="tab-menu-item">
+					<a href="{{ url_for('index') }}" class="logo"
+						>Hanghae99 Team 3 Mini Project</a
+					>
+				</h1>
+			</div>
+
+			<!-- 로그인 세션 -->
+			{% if session.user %}
+			<div class="tab-menu">
+				<a href="{{ url_for('user.dashboard') }}" class="tab-menu-item">{{ session["user"]["name"] }} 님 &#128526;
+				</a>
+				<a href="{{ url_for('book.cart') }}" class="tab-menu-item">Cart</a>
+				<a href="{{ url_for('user.logout') }}" class="tab-menu-item">Log out</a>
+
+			<!-- 로그아웃 시 -->	
+			{% else %}
+			<div class="tab-menu">
+				<a href="{{ url_for('user.signup') }}" class="tab-menu-item" >Sign up</a>
+				<a href="{{ url_for('user.login') }}" class="tab-menu-item" >Log in</a>  
+			{% endif %}
+
+				<a href="javascript:void(0)" onclick="asyncMovePage('/book/library/')" class="tab-menu-item" >Books</a>
+				
+			</div>
+		</header>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block head %} 
+	<title>Dashboard</title>
+{% endblock %}
+
+{% block body %}
+
+<div class="card-wrapper">
+	<div class="card">
+		<h1 class="form-title">대시보드</h1>
+		<p>{{ session["user"]["name"] }} 님이 로그인 하였습니다.</p>
+		<div>
+			<a href="{{ url_for('user.logout') }}" class="btn btn-primary">로그아웃</a>
+		</div>
+	</div>
+
+	<div class="card">
+		<h1 class="form-title">회원정보</h1>
+		<p>
+			<strong>이름:</strong>{{ session["user"]["name"] }}<br>
+			<strong>이메일:</strong>{{ session["user"]["email"] }}<br>
+		</p>
+	</div>
+</div>
+
+{% endblock %}

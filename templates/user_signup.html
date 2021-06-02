@@ -1,0 +1,187 @@
+{% extends "base.html" %} 
+
+{% block head %}
+<title>Sign Up</title>
+{% endblock %} 
+
+{% block body %}
+
+<div id="card-wrapper">
+  <div class="card">
+    <form name="signupForm" method="POST">
+      {{ form.csrf_token }}
+      <h1 class="form-title">회원가입</h1>
+
+      <div class="mb-3">
+        <label for="userName" class="form-label">이름</label>
+        <input
+          type="text"
+          class="form-control input-full"
+          name="userName"
+          placeholder="이름을 입력하세요."
+          value="{{ form.userName.data or '' }}"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="userEmail" class="form-label">이메일</label>
+        <input
+          type="email"
+          class="form-control input-full"
+          name="userEmail"
+          placeholder="name@example.com"
+          value="{{ form.userEmail.data or '' }}"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="userPassword" class="form-label">비밀번호</label>
+        <input
+          type="password"
+          class="form-control input-full"
+          name="userPassword"
+          placeholder="비밀번호를 입력하세요."
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="userPasswordConfirm" class="form-label input-full"
+          >비밀번호 확인</label
+        >
+        <input
+          type="password"
+          class="form-control input-full"
+          name="userPasswordConfirm"
+          placeholder="비밀번호를 한 번 더 입력하세요."
+        />
+      </div>
+
+      <!-- checkbox -->
+      <!-- 모두 동의 버튼 -->
+      <div class="checkbox-group-all">
+        <input type="checkbox" name="checkAll" id="checkAll" />
+        <label for="checkAll" class="label-checkAll">모두 동의하기</label>
+      </div>
+
+      <hr class="checkbox-line" style="1px #d7d7d7" />
+      <!--<hr class="checkbox-line" color="#d7d7d7" size="1px">-->
+
+      <ul class="checkbox-group">
+        <li class="box">
+          <div class="input-check">
+            <input
+              type="checkbox"
+              name="privacyPolicy"
+              id="privacyPolicy"
+              class="input-checkbox"
+            />
+            <label for="privacyPolicy">(필수) 개인정보 처리 방침 동의</label>
+          </div>
+        </li>
+        <li class="box">
+          <div class="input-check">
+            <input
+              type="checkbox"
+              name="termsOfService"
+              id="termsOfService"
+              class="input-checkbox"
+            />
+            <label for="termsOfService">(필수) 서비스 이용약관 동의</label>
+          </div>
+        </li>
+
+        <li class="box">
+          <div class="input-check">
+            <input
+              type="checkbox"
+              name="allowPromotions"
+              id="allowPromotions"
+              class="input-checkbox"
+            />
+            <label for="allowPromotion">(선택) 프로모션 수신 동의</label>
+          </div>
+        </li>
+      </ul>
+
+      <!-- 필드 에러 메세지 -->
+      {% for field, errors in form.errors.items() %}
+      <div class="error" role="alert">{{ ', '.join(errors) }}</div>
+      {% endfor %}
+
+      <!-- 중복 가입 에러 메세지 -->
+      {% for message in get_flashed_messages() %}
+      <div class="error" role="alert">{{ message }}</div>
+      {% endfor %}
+
+      <!-- 제출 -->
+      <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-primary btn-colored">
+          회원가입
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  const form = document.querySelector("#form-wrap");
+  const checkAll = document.querySelector(".checkbox-group-all input");
+  const checkBoxes = document.querySelectorAll(".input-check input");
+  const submitButton = document.querySelector("button");
+
+  const agreements = {
+    privacyPolicy: false, // 첫번째 필수 체크박스
+    termsOfService: false, // 두번째 필수 체크박스
+    allowPromotion: false, // 선택 체크박스
+  };
+
+  checkBoxes.forEach((item) => item.addEventListener("input", toggleCheckbox));
+
+  function toggleCheckbox(e) {
+    const { checked, id } = e.target;
+    agreements[id] = checked;
+    this.parentNode.classList.toggle("active");
+    checkAllStatus();
+    toggleSubmitButton();
+  }
+
+  function checkAllStatus() {
+    const { termsOfService, privacyPolicy, allowPromotions } = agreements;
+    if (termsOfService && privacyPolicy && allowPromotions) {
+      checkAll.checked = true;
+    } else {
+      checkAll.checked = false;
+    }
+  }
+
+  function toggleSubmitButton() {
+    const { termsOfService, privacyPolicy } = agreements;
+    if (termsOfService && privacyPolicy) {
+      submitButton.disabled = false; // 버튼 활성화
+    } else {
+      submitButton.disabled = true; // 버튼 비활성화
+    }
+  }
+
+  // 모두 동의 체크
+  checkAll.addEventListener("click", (e) => {
+    const { checked } = e.target;
+    if (checked) {
+      checkBoxes.forEach((item) => {
+        item.checked = true;
+        agreements[item.id] = false;
+        item.parentNode.classList.add("active");
+        submitButton.disabled = false; // 버튼 활성화
+      });
+    } else {
+      checkBoxes.forEach((item) => {
+        item.checked = false;
+        agreements[item.id] = false;
+        item.parentNode.classList.remove("active");
+        submitButton.disabled = true; // 버튼 비활성화
+      });
+    }
+  });
+</script>
+
+{% endblock %}
