@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="signpage_style.css" />
+</head>
+
+<body>
+
+    <div class="card">
+        <form name="signupForm">
+            <h1 class="foam-title">회원가입</h1>
+            <div class="mb-3">
+                <label for="inputName" class="form-label">이름</label>
+                <input type="text" class="form-control" name="inputName" placeholder="이름을 입력하세요">
+
+            </div>
+
+            <div class="mb-3">
+                <label for="inputEmail" class="form-label">이메일</label>
+                <input type="email" class="form-control input-full" name="inputEmail" placeholder="name@example.com"
+                    aria-label="Recipient's username" aria-describedby="button-addon2">
+
+            </div>
+
+            <div class="mb-3">
+                <label for="inputPassword" class="form-label">비밀번호</label>
+                <input type="password" class="form-control input-full" name="inputPassword" placeholder="비밀번호를 입력하세요"
+                    aria-describedby="passwordHelp">
+                <div id="passwordHelp" class="form-text">
+                    <!-- Your password must be 6-12 characters long, and must not contain spaces, special characters, or emoji. -->
+                </div>
+
+            </div>
+            <div class="mb-3">
+                <label for="inputConfirmPassword" class="form-label input-full">비밀번호 확인</label>
+                <input type="password" class="form-control input-full" name="inputConfirmPassword"
+                    placeholder="비밀번호를 한 번 더 입력하세요">
+            </div>
+
+            <!--        추가 및 변경된 부분 시작     -->
+            <!-- checkbox -->
+            <form action="">
+                <!-- 모두 동의 버튼 -->
+                <div class="checkbox-group-all">
+                    <input type="checkbox" name="checkAll" id="checkAll">
+                    <label for="checkAll" class="label-checkAll">모두 동의하기</label>
+                </div>
+
+                <hr class="checkbox-line" color="#d7d7d7" size="1px" >
+
+                <ul class="checkbox-group">
+                    <li class="box">
+                        <div class="input-check">
+                            <input type="checkbox" name="agreement" id="privacyPolicy" class="input-checkbox">
+                            <label for="privacyPolicy" >(필수) 개인정보 처리 방침 동의</label>
+                        </div>
+                    </li>
+                    <li class="box">
+                        <div class="input-check">
+                            <input type="checkbox" name="agreement" id="termsOfService" class="input-checkbox">
+                            <label for="termsOfService">(필수) 서비스 이용약관 동의</label>
+                            
+                        </div>
+                        
+                    </li>
+
+                    <li class="box">
+                        <div class="input-check">
+                            <input type="checkbox" name="agreement" id="allowPromotions" class="input-checkbox">
+                            <label for="allowPromotion">(선택) 프로모션 수신 동의</label>
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary btn-colored submitbtn" disabled>회원가입</button>
+                </div>
+            </form>
+    </div>
+    <script>
+        const form = document.querySelector("#form-wrap");
+        const checkAll = document.querySelector(".checkbox-group-all input");
+        const checkBoxes = document.querySelectorAll(".input-check input");
+        const submitButton = document.querySelector("button");
+
+        const agreements = {
+            privacyPolicy: false, // 첫번째 필수 체크박스
+            termsOfService: false, // 두번째 필수 체크박스
+            allowPromotion: false // 선택 체크박스
+        }
+
+        checkBoxes.forEach((item) => item.addEventListener("input", toggleCheckbox));
+
+        function toggleCheckbox(e) {
+            const { checked, id } = e.target;
+            agreements[id] = checked;
+            this.parentNode.classList.toggle("active");
+            checkAllStatus();
+            toggleSubmitButton();
+        }
+
+        function checkAllStatus() {
+            const { termsOfService, privacyPolicy, allowPromotions } = agreements;
+            if (termsOfService && privacyPolicy && allowPromotions) {
+                checkAll.checked = true;
+            } else {
+                checkAll.checked = false;
+            }
+        }
+
+        function toggleSubmitButton() {
+            const { termsOfService, privacyPolicy } = agreements;
+            if (termsOfService && privacyPolicy) {
+                submitButton.disabled = false; // 버튼 활성화
+            } else {
+                submitButton.disabled = true;  // 버튼 비활성화
+            }
+        }
+
+        // 모두 동의 체크 
+        checkAll.addEventListener("click", (e) => {
+            const { checked } = e.target;
+            if (checked) {
+                checkBoxes.forEach((item) => {
+                    item.checked = true;
+                    agreements[item.id] = false;
+                    item.parentNode.classList.add("active");
+                    submitButton.disabled = false; // 버튼 활성화
+                });
+            } else {
+                checkBoxes.forEach((item) => {
+                    item.checked = false;
+                    agreements[item.id] = false;
+                    item.parentNode.classList.remove("active");
+                    submitButton.disabled = true; // 버튼 비활성화
+                });
+            }
+            
+        });
+
+    </script>
+    <!--        추가 및 변경된 부분 끝     -->
+</body>
+
+</html>
