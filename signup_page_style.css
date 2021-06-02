@@ -1,0 +1,151 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: "DM Sans", sans-serif;
+    color: #2b292d;
+    letter-spacing: -0.01em;
+}
+
+/* Reset */
+p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+ul,
+ol,
+li,
+dl,
+dt,
+dd {
+    list-style-type: none;
+    padding-left: 0;
+    margin-left: 0;
+}
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button:focus,
+button:active,
+input:focus,
+input:active {
+    outline: none;
+    box-shadow: none;
+}
+
+button {
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+button,
+input,
+textarea {
+    font-family: "DM Sans", sans-serif;
+}
+
+
+/* Sign in */
+
+.card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.foam-title {
+    margin-bottom: 32px;
+    font-size: 28px;
+    font-weight: 400;
+    color: #333;
+}
+
+.mb-3 {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-label {
+    display: inline-block;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #999;
+}
+
+.form-control {
+    padding: 0 30px;
+    height: 60px;
+    width: 50vw;
+    font-size: 20px;
+    border: 1px solid #d7d7d7;
+    border-radius: 4px;
+    outline: none;
+    background-color: #fff;
+}
+
+/*       추가 및 변경된 부분        */
+
+/* button */
+.submitbtn {
+    background-color: #ff5c35;
+    cursor: pointer;
+    border: none;
+    color: #fff;
+    width: 50vw;
+    height: 60px;
+    border-radius: 25px;
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.submitbtn:disabled {
+    opacity: 0.2;
+    cursor: not-allowed;
+}
+
+/* checkbox */
+.checkbox-group-all {
+    margin-top: 60px;
+    border: none;
+    font-size: 20px;
+    display: flex;
+    font-weight: 700;
+}
+
+#checkAll {
+    width: 25px;
+    height: 25px;
+    margin-right: 15px;
+    border: 1px solid #d7d7d7;
+}
+
+.checkbox-line {
+    margin: 32px 0;
+}
+
+.input-check {
+    margin-bottom: 32px;
+    display: flex;
+    font-size: 16x;
+}
+
+.input-checkbox {
+    width: 25px;
+    height: 25px;
+    margin-right: 15px;
+    border: 1px solid #d7d7d7;
+}
+
+/*      변경된 부분 끝      */
