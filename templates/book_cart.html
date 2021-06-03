@@ -1,10 +1,13 @@
-{% extends "base.html" %} 
+{% extends "navbar.html" %} 
 
 {% block head %}
-<title>Cart</title>
+	<title>Cart</title>
 {% endblock %} 
 
 {% block body %}
+
+{# navbar.html #} 
+{{ super() }}
 
 <div id="card-wrapper">
 	<div class="card">

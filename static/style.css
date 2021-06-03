@@ -94,7 +94,8 @@ a {
 }
  */
 
-.tab-menu-item {
+ /* tab-menu-item; id 로 변경*/
+#tab-menu-item {
 	margin-right: 32px;
 }
 
@@ -111,6 +112,8 @@ a {
 	display: block;
 	padding: 16px 20px;
 }
+
+
 /* Sign in */
 .card {
 		display: flex;

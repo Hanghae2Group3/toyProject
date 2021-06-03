@@ -27,48 +27,6 @@
       href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap"
     />
 
-    {% block head %} 
-			{# Template inserted here #} 
-		{% endblock %}
-  </head>
-
-  <body>
-		
-		{% block navbar %}
-		<header class="nav-bar">
-			<div>
-				<h1 class="tab-menu-item">
-					<a href="{{ url_for('index') }}" class="logo"
-						>Hanghae99 Team 3 Mini Project</a
-					>
-				</h1>
-			</div>
-
-			<!-- 로그인 세션 -->
-			{% if session.user %}
-			<div class="tab-menu">
-				<a href="{{ url_for('user.dashboard') }}" class="tab-menu-item">{{ session["user"]["name"] }} 님 &#128526;
-				</a>
-				<a href="{{ url_for('book.cart') }}" class="tab-menu-item">Cart</a>
-				<a href="{{ url_for('user.logout') }}" class="tab-menu-item">Log out</a>
-
-			<!-- 로그아웃 시 -->	
-			{% else %}
-			<div class="tab-menu">
-				<a href="{{ url_for('user.signup') }}" class="tab-menu-item" >Sign up</a>
-				<a href="{{ url_for('user.login') }}" class="tab-menu-item" >Log in</a>  
-			{% endif %}
-
-				<a href="{{ url_for('book.library') }}" class="tab-menu-item" >Books</a>
-				
-			</div>
-		</header>
-		{% endblock %}
-
-		{% block body %} 
-			{# Template inserted here #} 
-		{% endblock %}
-		
 		<!-- script -->
     <script
       language="JavaScript"
@@ -82,5 +40,17 @@
       src="/static/js/scripts.js"
     ></script>
 
+    {% block head %} 
+			{# 템플릿 head #} 
+		{% endblock %}
+
+  </head>
+
+  <body>
+
+		{% block body %} 
+			{# 템플릿 바디 #} 
+		{% endblock %}
+		
   </body>
 </html>

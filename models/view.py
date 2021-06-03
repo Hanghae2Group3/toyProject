@@ -4,7 +4,7 @@ from functools import wraps
 import uuid
 
 from models.form import userLoginForm, userSignupForm
-from models.database import dbInfo
+from models.database import dbInfo, dbFunc
 
 #-- 데코레이터 : 로그인 세션 확인 --#
 def login_required(f):
@@ -29,9 +29,11 @@ def dashboard():
 #-- 사용자 등록 --#
 @bpUser.route('/signup/', methods = ['GET', 'POST'])
 def signup():
+
 	form = userSignupForm()
+
 	if request.method == 'POST' and form.validate_on_submit():
-		user = dbInfo().userDB.find_one({'email' : form.userEmail.data})
+		user = dbFunc().findUserEmail(form.userEmail.data)
 		if not user:
 			userData = { 
 				'_id' : uuid.uuid4().hex,
@@ -40,7 +42,7 @@ def signup():
 				'password': pbkdf2_sha256.encrypt(form.userPassword.data)
 			}
 				
-			dbInfo().userDB.insert_one(userData)
+			dbFunc().insertUserData(userData)
 			return redirect(url_for('user.login'))
 
 		else:
@@ -54,7 +56,7 @@ def login():
 	form = userLoginForm()
 	if request.method == 'POST' and form.validate_on_submit():
 		error = None
-		user = dbInfo().userDB.find_one({'email' : form.userEmail.data})
+		user = dbFunc().findUserEmail(form.userEmail.data)
         
 		if not user:
 			error = '존재하지 않는 사용자입니다.'

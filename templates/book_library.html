@@ -1,15 +1,18 @@
-{% extends "base.html" %} 
+{% extends "navbar.html" %}
+{% set active_page = "library" %}
 
 {% block head %}
-<title>Library</title>
+	<title>Book Library</title>
 {% endblock %} 
 
 {% block body %}
 
-<div class="card-wrapper">
+{# navbar.html #} 
+{{ super() }}
+
+<div id="card-wrapper">
 	<div class="card">
-		<h1 class="form-title">라이브러리</h1>
-		<p>테스트</p>
+		<h1 class="form-title">책 블록</h1>
 	</div>
 </div>
 

@@ -1,12 +1,16 @@
-{% extends "base.html" %} 
+{% extends "navbar.html" %}
+{% set active_page = "index" %} 
 
 {% block head %} 
-	<title>Final Project</title>
+	<title>Hanghae99</title>
 {% endblock %}
 
 {% block body %}
 
-<div class="card-wrapper">
+{# navbar.html #} 
+{{ super() }}
+
+<div id="card-wrapper">
 	<section class="landing">
 		<div class="container">
 			<div class="row">
