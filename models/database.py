@@ -1,37 +1,67 @@
 from pymongo import MongoClient
+from bson.objectid import ObjectId
 
 class dbInfo:
 	client = MongoClient('mongodb://localhost', 27017)
-	db = client['team3toy']
-	userDB = db['user']
+
+	userDb = client['team3toy']
+	userCol = userDb['user']
+
+	bookDb = client['booklists']
+	bookCol = bookDb['booklists']
+
 #client = MongoClient('mongodb://localhost', 27017)
-#client = MongoClient('mongodb://-', 27017)
+#client = MongoClient('mongodb://youngkwak:1006@15.164.169.53', 27017)
 
 class dbFunc:
-	# 이메일 찾기
-	def findUserEmail(self, email):
-		userEmail = dbInfo().userDB.find_one({'email' : email})
-		return userEmail
+	# user : 이메일로 유저 찾기
+	def findUserByEmail(self, email):
+		user = dbInfo().userCol.find_one({'email' : email})
+		return user
 
-	# 사용자 정보 db 저장
+	#	user : 아이디값으로 유저 찾기
+	def findUserById(self, id):
+		user = dbInfo().userCol.find_one({'_id' : id})
+		return user
+
+	# user : 사용자 정보 db 저장
 	def insertUserData(self, userData):
-		dbInfo().userDB.insert_one(userData)
+		dbInfo().userCol.insert_one(userData)
 
-	# 읽은 책 저장 
+	# book : 읽은 책 저장 
 	def updateBookRead(refUserId, bookId):
-		dbInfo().userDB.update({'_id': refUserId}, {'$push': {'bookRead': bookId}})
+		dbInfo().userCol.update({'_id': refUserId}, {'$push': {'bookRead': bookId}})
 
-	# 읽은 책 삭제
+	# book : 읽은 책 삭제
 	def deleteBookRead(refUserId, bookId):
-		dbInfo().userDB.delete_one({'_id': refUserId}, {'$unset:': {'bookRead': bookId}})
+		dbInfo().userCol.delete_one({'_id': refUserId}, {'$unset:': {'bookRead': bookId}})
 
-	# 읽을 책 저장
+	# book : 읽을 책 저장
 	def updateBookToRead(refUserId, bookId):
-		dbInfo().userDB.update({'_id': refUserId}, {'$push': {'bookToRead': bookId}})
+		dbInfo().userCol.update({'_id': refUserId}, {'$push': {'bookToRead': bookId}})
 	
-	# 읽을 책 삭제
+	# book : 읽을 책 삭제
 	def deleteBookToRead(refUserId, bookId):
-		dbInfo().userDB.delete_one({'_id': refUserId}, {'$unset:': {'bookToRead': bookId}})
+		dbInfo().userCol.delete_one({'_id': refUserId}, {'$unset:': {'bookToRead': bookId}})
+
+
+# class handleObjectId:
+# 	# 리스트 전체 ObjectId str값으로 변환
+# 	def objectIdDecoder(self, list):
+# 		results = []
+# 		for document in list:
+# 			document['_id'] = str(document['_id'])
+# 			results.append(document)
+# 			return results
+
+# 	# ObjectId str값 
+# 	def getSpecificId(id):
+# 		result = handleObjectId().objectIdDecoder(list(dbInfo().bookCol.find({"_id": ObjectId(id)})))
+# 		return str(result)
+
+
+
+
 
 # # API 역할을 하는 부분
 # @app.route('/api/list', methods=['GET'])

@@ -6,6 +6,7 @@
 {% if session.user %}
 	{% set navigation_bar = [
 		('/book/library/', 'library', 'Books'),
+		('/book/cart/', 'cart', 'My cart'),
     ('/user/dashboard/', 'dashboard', 'My books'),
     ('/user/logout/', 'logout', 'Log out')	
 	] %}

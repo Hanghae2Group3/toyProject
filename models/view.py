@@ -1,3 +1,4 @@
+from typing import Dict
 from flask import Flask, Blueprint, render_template, request, redirect, url_for, session, flash, jsonify
 from passlib.hash import pbkdf2_sha256
 from functools import wraps
@@ -5,6 +6,11 @@ import uuid
 
 from models.form import userLoginForm, userSignupForm
 from models.database import dbInfo, dbFunc
+
+from pymongo import MongoClient
+client = MongoClient('localhost', 27017)
+dbBooks = client.booklists
+
 
 #-- 데코레이터 : 로그인 세션 확인 --#
 def login_required(f):
@@ -20,7 +26,7 @@ def login_required(f):
 ###--- 사용자 뷰 ---###
 bpUser = Blueprint('user', __name__, url_prefix='/user')
 
-#-- 대시보드 (로그인 필요) --#
+#-- 즐겨찾기(메인) (로그인 필요) --#
 @bpUser.route('/dashboard/')
 @login_required
 def dashboard():
@@ -33,7 +39,7 @@ def signup():
 	form = userSignupForm()
 
 	if request.method == 'POST' and form.validate_on_submit():
-		user = dbFunc().findUserEmail(form.userEmail.data)
+		user = dbFunc().findUserByEmail(form.userEmail.data)
 		if not user:
 			userData = { 
 				'_id' : uuid.uuid4().hex,
@@ -56,7 +62,7 @@ def login():
 	form = userLoginForm()
 	if request.method == 'POST' and form.validate_on_submit():
 		error = None
-		user = dbFunc().findUserEmail(form.userEmail.data)
+		user = dbFunc().findUserByEmail(form.userEmail.data)
         
 		if not user:
 			error = '존재하지 않는 사용자입니다.'
@@ -88,10 +94,36 @@ bpBook = Blueprint('book', __name__, url_prefix='/book')
 #-- 라이브러리 --#
 @bpBook.route('/library/')
 def library():
-	return render_template('book_library.html')
+  reviews = list(dbBooks.booklists.find({}))
+  return render_template('book_library.html', data = reviews)
 
-#-- 장바구니 (로그인 필요)--#
+#-- 라이브러리 : 읽은 책 저장 --#
+@bpBook.route('/library/bookread/', methods=['GET', 'POST'])
+def insertBookReadToList():
+  if request.method == 'POST':
+    bookId = request.form.get("favbookId")
+    currentUserId = session["user"]["_id"]
+    user = dbFunc().findUserById(currentUserId)
+    dbInfo().userCol.update_one({"_id": currentUserId}, {"$push": {"bookRead": bookId}})
+    return jsonify({'msg' : 'POST 성공'})
+
+  return redirect(url_for('book.library'))
+
+
+
+#-- 즐겨찾기(임시라우트) --#
 @bpBook.route('/cart/')
 @login_required
 def cart():
-	return render_template('book_cart.html')
+	currentUserId = session["user"]["_id"]
+	currentUser = dbFunc().findUserById(currentUserId)
+	books = currentUser["bookRead"]
+
+	bookList = []
+	for bookId in books:
+		bookInfo = dbInfo().bookCol.find_one({"_id": bookId})
+		bookList.append(bookInfo)
+	
+	return render_template('book_cart.html', data = bookList)
+
+

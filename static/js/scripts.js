@@ -1,23 +1,3 @@
-$( document ).ready(function(){
-	function asyncMovePage(url){
-		let url = new URL(window.location.href)
-	
-		let ajaxOption = {
-			url : url,
-			async : true,
-			type : "GET",
-			dataType : "html"
-		};
-
-		$.ajax(ajaxOption).done(function(data){
-			$("#card-wrapper").load(url);
-			// Contents 영역 삭제
-			$('#card-wrapper').children().remove();
-			// Contents 영역 교체
-			$('#card-wrapper').html(data);
-		});
-	}
-});
 
 
 // $( document ).ready(function() {
@@ -27,6 +7,20 @@ $( document ).ready(function(){
 // 	});
 // });
 
+
+// $.ajax({
+// 	url: "/book/library/",
+// 	type: "POST",
+// 	data: data,
+// 	dataType: "json",
+// 	success: function(response) {
+// 		console.log(id);
+// 	},
+// 	error: function(response) {
+// 		console.log('failed');
+		
+// 	}
+// });
 
 
 // // sign up

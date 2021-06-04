@@ -1,19 +1,50 @@
 {% extends "navbar.html" %} 
+{% set active_page = "cart" %} 
 
 {% block head %}
-	<title>Cart</title>
+<title>Cart</title>
 {% endblock %} 
 
-{% block body %}
-
+{% block body %} 
 {# navbar.html #} 
 {{ super() }}
 
 <div id="card-wrapper">
-	<div class="card">
-		<h1 class="form-title">장바구니</h1>
-		<p>테스트</p>
-	</div>
+  {% for book in data %}
+  <div class="card" id="{{book._id}}" style="width: 18rem">
+    <img
+      class="card-img-top bookcard"
+      src="{{book.img_link}}"
+      alt="Card image cap"
+      style="cursor: pointer"
+    />
+    <div class="card-body">
+      <h5 class="card-title">{{book.title}}</h5>
+      <p class="card-text">{{book.subtitle}}</p>
+      평점: <img src="{{book.review_img}}" alt="" srcset="" />
+      <br />
+      가격: {{book.price}}
+    </div>
+  </div>
+  {% endfor %}
 </div>
+
+<script>
+  $(document).ready(function () {
+    
+    // 이미지 클릭시 텍스트 펼치고 닫기
+    $(".bookcard").click(function () {
+      let id = $(this).closest("div").attr("id");
+      idTag = $("#" + id);
+      textParts = idTag.children(".card-body");
+      // console.log(textParts)
+      if (textParts.css("display") == "block") {
+        textParts.hide();
+      } else {
+        textParts.show();
+      }
+    });
+  });
+</script>
 
 ​{% endblock %}
