@@ -1,0 +1,68 @@
+{% extends "navbar.html" %} 
+{% set active_page = "login" %}
+
+{% block head %}
+	<title>Log In</title>
+{% endblock %} 
+
+{% block body %}
+
+{# navbar.html #} 
+{{ super() }}
+
+<div id="card-wrapper">
+
+	<div class="card">
+		<form name="loginForm" method="POST">
+			{{ form.csrf_token }}
+			<h1 class="form-title">로그인</h1>
+
+			<div class="mb-3">
+				<input
+					type="email"
+					class="form-control input-full"
+					name="userEmail"
+					id="userEmail"
+					placeholder="name@example.com"
+					value="{{ form.userEmail.data or '' }}"
+				/>
+			</div>
+
+			<div class="mb-3">
+				<input
+					type="password"
+					class="form-control input-full"
+					name="userPassword"
+					id="userPassword"
+					placeholder="비밀번호를 입력하세요."
+				/>
+			</div>
+
+			<!-- 필드 에러 메세지 -->
+			{% for field, errors in form.errors.items() %}
+			<div class="error" role="alert">
+				{{ ', '.join(errors) }}
+			</div>
+			{% endfor %}
+			
+			<!-- 중복 가입 에러 메세지 -->
+			{% for message in get_flashed_messages() %}
+			<div class="error" role="alert">
+				{{ message }}
+			</div>
+			{% endfor %}
+
+			<!-- 제출 -->
+			<div class="d-grid gap-2">
+				<button type="submit" class="btn btn-primary btn-colored">
+					로그인
+				</button>
+			</div>
+		</form>
+	</div>
+	
+</div>
+
+
+​{% endblock %}
+
