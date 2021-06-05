@@ -1,0 +1,17 @@
+{% extends "navbar.html" %} 
+{% set active_page = "favorites_empty" %} 
+
+{% block head %}
+<title>Favorites_empty</title>
+{% endblock %} 
+
+{% block body %} 
+{# navbar.html #} 
+{{ super() }}
+
+<div id="card-wrapper">
+  <p>{{ session["user"]["name"] }}님의 책장을 채워보세요.</p>
+</div>
+
+
+​{% endblock %}

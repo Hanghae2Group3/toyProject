@@ -5,13 +5,13 @@ class dbInfo:
 	client = MongoClient('mongodb://localhost', 27017)
 
 	userDb = client['team3toy']
+	
 	userCol = userDb['user']
-
-	bookDb = client['booklists']
-	bookCol = bookDb['booklists']
+	favCol = userDb['favorites']
+	bookCol = userDb['booklists']
 
 #client = MongoClient('mongodb://localhost', 27017)
-#client = MongoClient('mongodb://youngkwak:1006@15.164.169.53', 27017)
+#client = MongoClient('mongodb://@15.164.169.53', 27017)
 
 class dbFunc:
 	# user : 이메일로 유저 찾기
@@ -28,21 +28,22 @@ class dbFunc:
 	def insertUserData(self, userData):
 		dbInfo().userCol.insert_one(userData)
 
-	# book : 읽은 책 저장 
-	def updateBookRead(refUserId, bookId):
-		dbInfo().userCol.update({'_id': refUserId}, {'$push': {'bookRead': bookId}})
 
-	# book : 읽은 책 삭제
-	def deleteBookRead(refUserId, bookId):
-		dbInfo().userCol.delete_one({'_id': refUserId}, {'$unset:': {'bookRead': bookId}})
+	# # book : 읽은 책 저장 
+	# def updateBookRead(refUserId, bookId):
+	# 	dbInfo().userCol.update({'_id': refUserId}, {'$addToSet': {'bookRead': bookId}})
 
-	# book : 읽을 책 저장
-	def updateBookToRead(refUserId, bookId):
-		dbInfo().userCol.update({'_id': refUserId}, {'$push': {'bookToRead': bookId}})
+	# # book : 읽은 책 삭제
+	# def deleteBookRead(refUserId, bookId):
+	# 	dbInfo().userCol.delete_one({'_id': refUserId}, {'$unset:': {'bookRead': bookId}})
+
+	# # book : 읽을 책 저장
+	# def updateBookToRead(refUserId, bookId):
+	# 	dbInfo().userCol.update({'_id': refUserId}, {'$push': {'bookToRead': bookId}})
 	
-	# book : 읽을 책 삭제
-	def deleteBookToRead(refUserId, bookId):
-		dbInfo().userCol.delete_one({'_id': refUserId}, {'$unset:': {'bookToRead': bookId}})
+	# # book : 읽을 책 삭제
+	# def deleteBookToRead(refUserId, bookId):
+	# 	dbInfo().userCol.delete_one({'_id': refUserId}, {'$unset:': {'bookToRead': bookId}})
 
 
 # class handleObjectId:
@@ -88,8 +89,3 @@ class dbFunc:
 #     name_receive = request.form['name_give']
 #     db.mystar.delete_one({'name': name_receive})
 #     return jsonify({'msg': '삭제 완료!'})
-
-
-
-
-

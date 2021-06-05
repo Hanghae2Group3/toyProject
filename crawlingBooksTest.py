@@ -6,7 +6,7 @@ from pymongo import MongoClient
 import uuid
 
 client = MongoClient('localhost', 27017)
-db = client.booklists
+db = client.team3toy
 
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
@@ -30,7 +30,7 @@ if books is not None:
         reviews = book_details.select_one('div.review > img')['src'] # 리뷰 별점 이미지
         price = book_details.select_one('div.price > strong.book_price').text # 가격
         doc = {
-						'_id' : uuid.uuid4().hex,
+						'_id' : uuid.uuid4().hex, #임의의 string값
             'title' : title_book,
             'subtitle' : subtitle_book,
             'img_link' : img_book,
