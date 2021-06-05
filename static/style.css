@@ -11,6 +11,8 @@ body {
 	letter-spacing: -0.01em;
 }
 
+
+
 /* Reset */
 p {
 	font-size: 16px;
@@ -113,6 +115,14 @@ a {
 	padding: 16px 20px;
 }
 
+/* Books Page */
+
+
+/* book library */
+.review_img {
+	display: block;
+	width: 20px;
+}
 
 /* Sign in */
 .card {
@@ -227,7 +237,28 @@ a {
 	letter-spacing: -0.04em;
 }
 
-/* Program */
+/* book library - 여기가 수정한 부분 */
+
+.book-desc {
+	position: relative;
+	top: -150px;
+	z-index: 1;
+	font-size: 16px;
+	line-height: 1.3333333333;
+	letter-spacing: -0.02em;
+	transition: color 300ms ease-in-out;
+}
+
+.heartbtn{
+	position: relative;
+	top: 40px;
+	left: 95px;
+	z-index: 1;
+	height: 25px;
+	width: 25px;
+	justify-content: center;
+}
+
 .program .row:first-child {
 	margin-bottom: 32px;
 }
@@ -244,41 +275,53 @@ a {
 	color: #009b4d;
 }
 
+/* .book-card {
+	display: flex;
+	flex-direction: row;
+} */
+
 .program-card {
-	display: block;
-	padding: 24px 0 32px;
+	/* display: block; */
+	height: 500px;
+	padding: 24px 20px;
 	border-radius: 8px;
 	text-align: center;
-	background-color: #fff;
 	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05), 0px 1px 3px rgba(0, 0, 0, 0.1),
 		inset 0px 1px 0px rgba(255, 255, 255, 0.1);
 	transition: background-color 300ms ease-in-out, box-shadow 300ms ease-in-out;
 }
 
-.program-card:hover,
-.program-card:active {
-	background-color: #3141c5;
-	box-shadow: 0px 11px 55px rgba(0, 0, 0, 0.07), 0px 13px 18px rgba(0, 0, 0, 0.15);
+.program-card:hover #book-img{
+	opacity: 0.3;
+	transition: opacity 300ms ease-in-out;
 }
 
-.program-card:hover h2,
-.program-card:active h2 {
-	color: #fff;
+.program-card:hover,
+.program-card:active {
+	box-shadow: 0px 11px 55px rgba(0, 0, 0, 0.07), 0px 13px 18px rgba(0, 0, 0, 0.15);
+	/* background: linear-gradient(rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.6) 100%); */
+}
+
+.program-card .book-desc{
+	opacity: 0;
+}
+
+.program-card:hover .book-desc,
+.program-card:active .book-desc {
+	color: black;
+	opacity: 1;
 }
 
 .program-card img {
 	display: block;
-	width: auto;
-	height: 195px;
+	width: 80%;
 	margin: 0 auto 16px;
+	object-fit: contain;
 }
 
-.program-card h2 {
-	font-size: 18px;
-	line-height: 1.3333333333;
-	letter-spacing: -0.02em;
-	transition: color 300ms ease-in-out;
-}
+
+
+
 
 /* Curriculum */
 .curriculum .row:first-child {
@@ -614,7 +657,7 @@ a {
 /* Limit Bootstrap container size */
 @media screen and (min-width: 1200px) {
 	.container {
-		max-width: 960px !important;
+		max-width: 1120px !important;
 	}
 }
 
@@ -671,3 +714,4 @@ a {
 }
 
 /*      변경된 부분 끝      */
+

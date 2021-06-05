@@ -1,68 +1,92 @@
-{% extends "navbar.html" %} 
-{% set active_page = "library" %} 
+{% extends "navbar.html" %}
+{% set active_page = "library" %}
 
 {% block head %}
 <title>Book Library</title>
-{% endblock %} 
+{% endblock %}
 
-{% block body %} 
-{# navbar.html #} 
+{% block body %}
+
+{# navbar.html #}
 {{ super() }}
 
-<div id="card-wrapper">
+<section class="program section">
+     <!-- title text -->
+     <div class="container">
+          <div class="row justify-content-center">
+               <div class="col-12 col-md-10">
+
+                    <h1 class="section-title">
+                         Frontend Dev.
+                         <br />
+                         Immersive Course
+                    </h1>
+                    <p class="section-desc">
+                         Your best course for career transformation in front-end developement. This full-time bootcamp
+                         features
+                         expert instruction, one-on-one career coaching, and connections to top employers to get you
+                         hired.
+                    </p>
+               </div>
+          </div>
+
+          <!-- books -->
+          <div id="card-wrapper">
+               <div class="row">
+                    {% for book in data %}
+                    <div class="col-12 col-md-4">
+                         <div class="program-card" id="{{book._id}}" style="width: 20rem">
+                              <a><i class="fas fa-heart heartbtn"></i></a>
+                              <img id="book-img" src="{{book.img_link}}" alt="Card image cap">
+
+                              <!-- card-text -->
+                              <div class="book-desc">
+                                   <h2 class="card-title">{{book.title}}</h2>
+                                   <p class="card-text">{{book.subtitle}}</p>
+                                   <!-- 평점: <img class="review_img" src="{{book.review_img}}" alt="" srcset="">
+                                   <br>
+                                   {{book.price}} -->
+                              </div>
+                         </div>
+                    </div>
+                    {% endfor %}
+
+               </div>
+          </div>
+     </div>
+</section>
+
+
+
+
+<!-- 원래 카드부분 -->
+<!-- <div id="card-wrapper">
   {% for book in data %}
-  <div class="card" id="{{book._id}}" style="width: 18rem">
-    <a id="favBtn" class="favBtn btn btn-primary">즐겨찾기</a>
-    <img
-      class="card-img-top bookcard"
-      src="{{book.img_link}}"
-      alt="Card image cap"
-      style="cursor: pointer"
-    />
-    <div class="card-body">
-      <h5 class="card-title">{{book.title}}</h5>
-      <p class="card-text">{{book.subtitle}}</p>
-      평점: <img src="{{book.review_img}}" alt="" srcset="" />
-      <br />
-      가격: {{book.price}}
-    </div>
-  </div>
-  {% endfor %}
-</div>
+       <div class="card" id="{{book._id}}" style="width: 18rem;">
+         <a id="favBtn" class="btn btn-primary">즐겨찾기</a>
+         <button class="heartbtn"><i class="fas fa-heart"></i></button>
+         <img class="card-img-top bookcard" src="{{book.img_link}}" alt="Card image cap">
+         <div class="card-body">
+           <h5 class="card-title">{{book.title}}</h5>
+           <p class="card-text">{{book.subtitle}}</p>
+           평점: <img src="{{book.review_img}}" alt="" srcset="">
+           <br>
+           가격: {{book.price}}
+           
+         </div>
+       </div>
+       {% endfor %}
+</div> -->
 
+
+
+<script language="JavaScript" type="text/javascript"
+     src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
-  $(document).ready(function () {
-    // 읽은 책 db 추가 (POST, 책 id)
-    $(".favBtn").on("click", function () {
-      let favBookId = $(this).closest("div").attr("id");
 
-      $.ajax({
-        url: "/book/library/bookread/",
-        type: "POST",
-        data: {"favbookId": favBookId},
-        success: function (response) {
-          console.log(response['msg']);
-					console.log(favBookId);
-        },
-        error: function (response) {
-          console.log(response['msg']);
-        }
-      });
-		});
 
-    // 이미지 클릭시 텍스트 펼치고 닫기
-    $(".bookcard").click(function () {
-      let id = $(this).closest("div").attr("id");
-      idTag = $("#" + id);
-      textParts = idTag.children(".card-body");
-      // console.log(textParts)
-      if (textParts.css("display") == "block") {
-        textParts.hide();
-      } else {
-        textParts.show();
-      }
-    });
-  });
+
+
 </script>
 
 ​{% endblock %}
