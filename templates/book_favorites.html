@@ -1,71 +1,86 @@
-{% extends "navbar.html" %} 
-{% set active_page = "favorites" %} 
+{% extends "navbar.html" %}
+{% set active_page = "favorites" %}
 
 {% block head %}
 <title>Favorites</title>
-{% endblock %} 
+{% endblock %}
 
-{% block body %} 
-{# navbar.html #} 
+{% block body %}
+{# navbar.html #}
 {{ super() }}
+<section class="myfav-page">
+    <div class="container">
+        <div id="card-wrapper">
+            <div class="row justify-content-cente">
+                <div class="col-12">
+                    <div class="myfavbooks-desc">
+                        <span>
+                            <strong>{{ session["user"]["name"] }}</strong> 님이 담아 둔 
+                            <br>
+                            <strong>{{ session["user"]["count"]["total"] }}</strong>권의 책 중
+                        </span> 
+                        <span class="readbook">  
+                            읽은 책 &#128214; 
+                            <br>
+                            <strong>{{session["user"]["count"]["read"] }}</strong>
+                        </span>
+                        <span class="readbook">   
+                            읽을 책
+                            &#128214; 
+                            <br>
+                            <strong>{{ session["user"]["count"]["unread"] }}</strong>
+                        </span>
+                    </div>
+                    <h2 class="myfav-txt">
+                        MY HEART
+                    </h2>
+                </div>
 
-<div id="card-wrapper">
-	<div>
-		<p>담아 둔 {{ session["user"]["count"]["total"] }}권의 책 중 읽은 책 &#128214; {{ session["user"]["count"]["read"] }} 읽을 책 &#128214; {{ session["user"]["count"]["unread"] }}</p>	
-	</div>
-  {% for book in data %}
-  <div class="card" id="{{book._id}}" style="width: 18rem">
-		<a id="favBtn" class="favBtn btn btn-primary">삭제하기</a>
-    <img
-      class="card-img-top bookcard"
-      src="{{book.img_link}}"
-      alt="Card image cap"
-      style="cursor: pointer"
-    />
-    <div class="card-body">
-      <h5 class="card-title">{{book.title}}</h5>
-      <p class="card-text">{{book.subtitle}}</p>
-      평점: <img src="{{book.review_img}}" alt="" srcset="" />
-      <br />
-      가격: {{book.price}}
+
+            </div>
+            <div class="row">
+                {% for book in data %}
+                <div class="col-12 col-md-4">
+                    <div class="program-card" id="{{book._id}}" style="width: 20rem">
+                        <a class="favBtn"><i class="fas fa-heart heartbtn"></i></a>
+                        <img class="book-img" src="{{book.img_link}}" alt="Card image cap" style="cursor: pointer" />
+                        <!-- card-text -->
+                        <div class="book-desc">
+                            <h5 class="card-title">{{book.title}}</h5>
+                            <p class="card-text">{{book.subtitle}}</p>
+                            <!-- 평점: <img src="{{book.review_img}}" alt="" srcset="" />
+                    <br />
+                    가격: {{book.price}} -->
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
-  </div>
-  {% endfor %}
-</div>
+</section>
+
 
 <script>
-  $(document).ready(function () {
-    // 읽은 책 db 추가 (POST, 책 id)
-    $(".favBtn").on("click", function () {
-      let favBookId = $(this).closest("div").attr("id");
+    $(document).ready(function () {
+        // 읽은 책 db 추가 (POST, 책 id)
+        $(".favBtn").on("click", function () {
+            let favBookId = $(this).closest("div").attr("id");
 
-      $.ajax({
-        url: "/book/favorites/delete/",
-        type: "POST",
-        data: {"favBookId": favBookId},
-        success: function (response) {
-          console.log(response['msg']);
-					location.reload();
-        },
-        error: function (response) {
-          console.log(response['msg']);
-        }
-      });
-		});
+            $.ajax({
+                url: "/book/favorites/delete/",
+                type: "POST",
+                data: { "favBookId": favBookId },
+                success: function (response) {
+                    console.log(response['msg']);
+                    location.reload();
+                },
+                error: function (response) {
+                    console.log(response['msg']);
+                }
+            });
+        });
 
-    // 이미지 클릭시 텍스트 펼치고 닫기
-    $(".bookcard").click(function () {
-      let id = $(this).closest("div").attr("id");
-      idTag = $("#" + id);
-      textParts = idTag.children(".card-body");
-      // console.log(textParts)
-      if (textParts.css("display") == "block") {
-        textParts.hide();
-      } else {
-        textParts.show();
-      }
-    });
-  });
 </script>
 
 ​{% endblock %}
