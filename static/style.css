@@ -237,6 +237,45 @@ a {
 	letter-spacing: -0.04em;
 }
 
+/* MY favorites 페이지 */
+
+.myfav-txt {
+	border-bottom: 3px solid gray;
+	padding-bottom: 10px;
+	padding: 0px 0px 10px 0px;
+	margin-bottom: 50px;
+	color: gray;
+	
+}
+
+.myfavbooks-desc {
+	display: flex;
+	justify-content: space-between;
+	background-color: #DCDCDC;
+	padding: 50px;
+	border-radius: 10px;
+	margin-bottom: 50px;
+}
+
+.myfavbooks-desc span {
+	margin: 0;
+	font-size: 24px;
+	
+}
+
+/* .myfavbooks-desc .readbook::before {
+	border-right: 1px solid gray;
+	content: "";
+    width: 1px;
+    background: black;
+    position: absolute;
+    height: 120px;
+}  */
+
+.myfav-page {
+	padding-top: 90px;
+}
+
 /* book library - 여기가 수정한 부분 */
 
 .book-desc {
@@ -250,6 +289,7 @@ a {
 }
 
 .heartbtn{
+	cursor: pointer;
 	position: relative;
 	top: 40px;
 	left: 95px;
