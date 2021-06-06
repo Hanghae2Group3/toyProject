@@ -11,49 +11,48 @@
 {{ super() }}
 
 <section class="program section">
-     <!-- title text -->
-     <div class="container">
-          <div class="row justify-content-center">
-               <div class="col-12 col-md-10">
+    <!-- title text -->
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10">
+                <h1 class="section-title">
+                    Frontend Dev.
+                    <br />
+                    Immersive Course
+                </h1>
+                <p class="section-desc">
+                    Your best course for career transformation in front-end developement. This full-time bootcamp
+                    features
+                    expert instruction, one-on-one career coaching, and connections to top employers to get you
+                    hired.
+                </p>
+            </div>
+        </div>
 
-                    <h1 class="section-title">
-                         Frontend Dev.
-                         <br />
-                         Immersive Course
-                    </h1>
-                    <p class="section-desc">
-                         Your best course for career transformation in front-end developement. This full-time bootcamp
-                         features
-                         expert instruction, one-on-one career coaching, and connections to top employers to get you
-                         hired.
-                    </p>
-               </div>
-          </div>
+        <!-- books -->
+        <div id="card-wrapper">
+            <div class="row">
+                {% for book in data %}
+                <div class="col-12 col-md-4">
+                    <div class="program-card" id="{{book._id}}" style="width: 20rem">
+                        <a class="favBtn"><i class="fas fa-heart heartbtn"></i></a>
+                        <img id="book-img" src="{{book.img_link}}" alt="Card image cap">
 
-          <!-- books -->
-          <div id="card-wrapper">
-               <div class="row">
-                    {% for book in data %}
-                    <div class="col-12 col-md-4">
-                         <div class="program-card" id="{{book._id}}" style="width: 20rem">
-                              <a><i class="fas fa-heart heartbtn"></i></a>
-                              <img id="book-img" src="{{book.img_link}}" alt="Card image cap">
-
-                              <!-- card-text -->
-                              <div class="book-desc">
-                                   <h2 class="card-title">{{book.title}}</h2>
-                                   <p class="card-text">{{book.subtitle}}</p>
-                                   <!-- 평점: <img class="review_img" src="{{book.review_img}}" alt="" srcset="">
-                                   <br>
-                                   {{book.price}} -->
-                              </div>
-                         </div>
+                        <!-- card-text -->
+                        <div class="book-desc">
+                            <h2 class="card-title">{{book.title}}</h2>
+                            <p class="card-text">{{book.subtitle}}</p>
+                            <!-- 평점: <img class="review_img" src="{{book.review_img}}" alt="" srcset="">
+                            <br>
+                            {{book.price}} -->
+                        </div>
                     </div>
-                    {% endfor %}
+                </div>
+                {% endfor %}
 
-               </div>
-          </div>
-     </div>
+            </div>
+        </div>
+    </div>
 </section>
 
 
@@ -81,9 +80,29 @@
 
 
 <script language="JavaScript" type="text/javascript"
-     src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
+    $(document).ready(function () {
+        // 읽은 책 db 추가 (POST, 책 id)
+        $(".favBtn").on("click", function () {
+            let favBookId = $(this).closest("div").attr("id");
 
+            $.ajax({
+                url: "/book/library/bookread/",
+                type: "POST",
+                data: { "favbookId": favBookId },
+                success: function (response) {
+                    console.log(response['msg']);
+                    console.log(favBookId);
+                },
+                error: function (response) {
+                    console.log(response['msg']);
+                }
+            });
+        });
+
+
+    });
 
 
 
