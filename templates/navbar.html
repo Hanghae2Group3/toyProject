@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<!-- 로그인 세션 확인 -->
+{% if session.user %}
+	{% set navigation_bar = [
+		('/book/library/', 'library', 'Books'),
+		('/book/favorites/', 'favorites', 'My favorites'),
+    ('/user/dashboard/', 'dashboard', 'My books'),
+    ('/user/logout/', 'logout', 'Log out')	
+	] %}
+{% else %}
+	{% set navigation_bar = [
+		('/book/library/', 'library', 'Books'),
+		('/user/signup/', 'signup', 'Sign up'),
+		('/user/login/', 'login', 'Log in')
+	] %}
+{% endif %}
+
+{% set active_page = active_page|default('index') -%}
+
+<header class="nav-bar">
+	<div>
+		<h1 class="tab-menu-item">
+			<a href="{{ url_for('index') }}" class="logo"
+				>Hanghae99 Team 3 Mini Project</a
+			>
+		</h1>
+	</div>
+
+	<div class="tab-menu">
+		{% for href, id, caption in navigation_bar %}
+			<a href="{{ href|e }}" id="tab-menu-item"  {% if id == active_page %} class="tab-menu-item active" {% endif %}>{{ caption|e }}</a>
+		{% endfor %}
+	</div>
+
+	</div>
+</header>
+
+{% endblock %}
+

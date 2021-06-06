@@ -1,0 +1,27 @@
+{% extends "navbar.html" %} 
+{% set active_page = "dashboard" %}
+
+{% block head %}
+	<title>Dashboard</title>
+{% endblock %} 
+
+{% block body %}
+
+{# navbar.html #} 
+{{ super() }}
+
+
+<div id="card-wrapper">
+	<div>
+		<h1 class="form-title"></h1>
+		<p><strong>{{ session["user"]["name"] }}</strong>님 반갑습니다 &#128526;</p>
+		<p>{{ session["user"]["email"] }}</p>
+		<a href="{{ url_for('user.logout') }}" class="btn btn-primary">로그아웃</a>		
+	</div>
+
+
+
+
+</div>
+
+{% endblock %}
